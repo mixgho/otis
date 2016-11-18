@@ -1,11 +1,3 @@
-//
-//  LoginVC.swift
-//  otis
-//
-//  Created by mixgho on 11/6/16.
-//  Copyright © 2016 Enrian Partners. All rights reserved.
-//
-
 import UIKit
 
 class LoginVC: UIViewController {
@@ -49,11 +41,11 @@ class LoginVC: UIViewController {
             
             UserDefaults.standard.set(user.name, forKey: "user")
             
-            // let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
-            // UIApplication.shared.keyWindow?.rootViewController = tabVC
-            self.dismiss(animated: true, completion: nil)
-	}
-        
+            DispatchQueue.main.async() {
+                let tabVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+                (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController = tabVC
+            }
+        }
         task.resume()
     }
 }
